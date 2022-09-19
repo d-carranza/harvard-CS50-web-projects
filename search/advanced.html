@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Advanced Search</title>
+        <link rel="stylesheet" href="search.css">
+    </head>
+    <body>
+        <nav class="menu">
+            <div id = "pagename"> 
+                <h1>
+                    Advanced Search
+                </h1>
+            </div>
+            <div id = "navigation">
+                <a href = "index.html" >Google Search</a>
+            </div>  
+        </nav>
+        <form id = "advanced" action="https://www.google.com/search">
+            <h1>
+                Find pages with...
+            </h1>
+            <div id = "advinput">
+                <div id="include">
+                    <div>
+                        <label for="as_q">all these words:</label>
+                    </div>
+                    <div>
+                        <input class = "advanced" type="text" name="as_q" >
+                    </div>
+                </div>
+                <div id="exact">
+                    <div>
+                        <label for="as_epq">this exact word or phrase:</label>
+                    </div>
+                    <div>
+                        <input class = "advanced" type="text" name="as_epq">
+                    </div>
+                </div>
+                <div id="any">
+                    <div>
+                        <label for="as_oq">any of these words:</label>
+                    </div>
+                    <div>
+                        <input class = "advanced"  type="text" name="as_oq">
+                    </div>
+                </div>
+                <div id="none">
+                    <div>
+                        <label for="as_eq">none of these words:</label>
+                    </div>
+                    <div>
+                        <input class = "advanced"  type="text" name="as_eq">
+                    </div>
+                </div>
+            </div>
+            <div id = "asearchbtn">
+                <input id="advancedbtn" type="submit" value="Advanced Search">
+            </div>
+        </form>
+    </body>
+</html>
+
