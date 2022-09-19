@@ -1,0 +1,14 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Entry not found
+{% endblock %}
+
+{% block body %}
+    <h1>Request Page Not Found</h1>
+
+    <p>Sorry, we couldn't find any page named "{{entry}}".</p>
+    
+    <p>Would you like to <a href="/wiki/new"" >Create New Page</a> instead?</p>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{entry}}
+{% endblock %}
+
+{% block body %}
+<div id = "entrytitle">
+    <h1> {{entry}} </h1>
+</div>
+<div id = "line"></div>
+<div id = "entrycontent">
+    {{ htmlpage|safe }}
+</div>
+<div>
+    <form method = "POST">
+        {% csrf_token %}
+        <div>
+            <h5>Edit Content</h5>
+        </div>
+        <div>
+            {{ editpageform.content }}
+        </div>
+        <input type = "submit" name = "submit" value="Submit">
+    </form>
+</div>
+{% endblock %}

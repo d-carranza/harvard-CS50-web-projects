@@ -1,0 +1,31 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Create New Page
+{% endblock %}
+
+{% block body %}
+    <h1>Create New Page</h1>
+    <div id = "line"></div>
+    <br>
+    <form method = "POST">
+        {% csrf_token %}
+        <div>
+            <div>
+                <h5>Title</h5>
+            </div>
+            <div>
+                 {{ newpageform.title }}
+            </div>
+        </div> 
+        <div>
+            <div>
+                <h5>Content</h5>
+            </div>
+            <div>
+                {{ newpageform.content }}
+            </div>
+        </div>
+        <input type = "submit" name = "submit" value="Submit">
+    </form>
+{% endblock %}

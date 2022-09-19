@@ -1,0 +1,18 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{entry}}
+{% endblock %}
+
+{% block body %}
+<div id = "entrytitle">
+    <h1> {{entry}} </h1>
+</div>
+<div id = "line"></div>
+<div id = "entrycontent">
+    {{ htmlpage|safe }}
+</div>
+<form id = "entryedit" action = "/wiki/{{entry}}/edit">
+    <input type="submit" value="Edit Page" />
+</form>
+{% endblock %}
