@@ -1,0 +1,26 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Listings in the {{ category }} category</h2>
+    {% for listing in catlist %}
+        <div class="item">
+            <div class="left">
+                <div id="top">
+                    <div class="title">
+                        <a href="/listing/{{ listing.id }}"><h3>{{ listing.title }}</h3></a>
+                    </div>
+                    <div class="price">
+                        Current Price: ${{ listing.starting_bid }}
+                    </div>
+                </div>
+                <div class="description">
+                    Description: {{ listing.description}}
+                </div>
+            </div>
+            <div id="image">
+                <img src="{{ listing.image }}" alt="">
+            </div>
+        </div>
+        <br>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,145 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <div class="body">
+        <div id="listingitem">
+            <div id="listingleft">
+                <div class="image">
+                    <img src="{{ listing.image }}" alt="">
+                </div>
+            </div>
+            <div id="listingright">
+                <div id="righttop">
+                    <div id="listinghead">
+                        <div class="status">
+                            {% if listing.is_active %}
+                                <div id="auctionstatus">
+                                    <div class="statusdisplay">
+                                        Status: Active
+                                    </div>
+                                    <div id="cancelauction">
+                                        {% if user == publisher %}
+                                            <form action="" method="post">
+                                                {% csrf_token %}
+                                                <input type="submit" name="close" value="Close the auction">
+                                            </form>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="statusdisplay">
+                                    Status: Closed
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="titlehead">
+                            <div class="title">
+                                <h2>{{ listing.title }}</h2>
+                            </div>
+                            <div class="watchlist">
+                                {% if user.is_authenticated %}
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                    {% if user in watchers %}
+                                        <input type="submit" name="removewatchlist" value="Remove from Watchlist">
+                                    {% else %}
+                                        <input type="submit" name="addwatchlist" value="Add to Watchlist">
+                                    {% endif %}
+                                </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>   
+                    <div class="description">
+                        Description: {{ listing.description}}
+                    </div> 
+                </div>
+                <div id="rightbottom">
+                    <div class="people">
+                        <span id="publisher">
+                            {% if user.is_authenticated %}
+                                {% if listing.publisher == user %}
+                                    Publisher: <i><strong>You</strong></i>
+                                {% else %}
+                                    Publisher: {{ listing.publisher }}
+                                {% endif %}
+                            {% else %}
+                                Publisher: {{ listing.publisher }} 
+                            {% endif %}
+                        </span>
+                        <span id="owner" >
+                            {% if user.is_authenticated %}
+                                {% if listing.owner == user %}
+                                    Owner: <i><strong>You</strong></i> 
+                                {% else %}
+                                    Owner: {{ listing.owner }} 
+                                {% endif %}
+                            {% else %}
+                                Owner: {{ listing.owner }} 
+                            {% endif %}
+                        </span>
+                    </div>
+                    <div class="bid">
+                        <div id="auctionmessage">
+                            {% if minbid == listing.starting_bid %}
+                                Starting Price: ${{ listing.starting_bid }}
+                            {% elif user.is_authenticated and listing.is_active %}
+                                {% if winner == user %}
+                                    <i><strong>You</strong></i> are the highest bidder at ${{ highestbid }}
+                                {% else %}
+                                    {{ winner }} is the highest bidder at ${{ highestbid }}
+                                {% endif %}
+                            {% elif listing.is_active %}
+                                {{ winner }} is the highest bidder at ${{ highestbid }}
+                            {% elif user.is_authenticated %}
+                                {% if winner == user %}
+                                    <i><strong>You</strong></i> won the auction at ${{ highestbid }}
+                                {% endif %}
+                            {% else %}
+                                {{ winner }} won the auction at ${{ highestbid }}
+                            {% endif %}
+                        </div>
+                        <div id="auctionbid">
+                            {% if user.is_authenticated and listing.is_active %}
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                    <input type="number" step=".01" name="newbid" min="{{minbid}}" placeholder="min bid: ${{minbid}}">
+                                    <input type="submit" value="Bid">
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+        <div class="comments">
+            <div class="comentsheader">
+                <h4>Comments</h4> 
+            </div>
+            <div class="sendcomment">
+                {% if user.is_authenticated %}
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="newcomment" placeholder="Write your comment">
+                        <input type="submit" value="Send">
+                    </form>
+                {% endif %}
+            </div>
+            <div class="readcomments">
+                {% for comment in comments %}
+                    <div class="commentinfo">
+                        <div class="commentwritter">
+                            {{comment.user_id.username}}
+                        </div>
+                        <div class="commenttime">
+                            <small>{{comment.time}}</small>
+                        </div>
+                    </div>  
+                    <div class="commenttext">
+                        {{comment.comment}}
+                    </div> 
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

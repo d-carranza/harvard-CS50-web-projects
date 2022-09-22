@@ -1,0 +1,37 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Create Listing</h2>
+    <br>
+    {% if user.is_authenticated %}
+        <form id="newlisting" action="{% url 'create' %}" method="post">
+            {% csrf_token %}
+            <div>
+                <div id="createhead">
+                    <div id="newtittle">
+                        {{ newlistingform.title }}
+                    </div>
+                    <div id="newstart">
+                        {{ newlistingform.starting_bid }}
+                    </div>    
+                    <div id="newimg">
+                        {{ newlistingform.image }}
+                    </div>
+                    <div id="newcat">
+                        {{ newlistingform.category }}
+                    </div>
+                </div>
+                <div id="newdescription">
+                    {{ newlistingform.description }}
+                </div>
+            </div>
+            <div>
+                <input type = "submit" name = "submit" value="Publish">
+            </div>
+        </form>
+    {% else %}
+        <div id="nowatchlist">   
+            You need to sign up in order to create a listing
+        </div>
+    {% endif %}
+{% endblock %}
