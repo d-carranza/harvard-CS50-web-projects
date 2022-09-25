@@ -1,0 +1,45 @@
+
+#emails-view-child {
+    display: flex;
+    margin-bottom: 3px;
+    height: 38px;
+}
+#arch-btn {
+    margin-left: auto; 
+    margin-right: 0px;
+}
+#emails-view h3{
+    margin-bottom: 10px;
+}
+.email-view{
+    display:flex;
+    justify-content: space-between;
+    border-radius: 4px;
+    margin-right: 3px;
+}
+#sender-view{
+    width: 220px;
+    padding-top: 7px;
+    padding-left: 7px;
+    justify-content: space-between;
+}
+#subject-view{
+    width: 632px;
+    padding-top: 7px;
+    justify-content: space-between;
+}
+#timestamp-view{
+    width: 200px;
+    margin-left: auto; 
+    padding-top: 7px;
+}
+.data-row{
+    display: flex;
+}
+.view-title{
+    margin-right: 5px;
+    font-weight: bold;
+}
+textarea {
+    min-height: 400px;
+}
