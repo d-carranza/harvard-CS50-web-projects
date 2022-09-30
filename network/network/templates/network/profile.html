@@ -1,0 +1,32 @@
+{% extends "network/layout.html" %}
+
+    {% load static %}
+
+    {% block body %}
+        <div id="postername" style="display: none;">{{ poster }}</div>
+        <div class="profile">
+            <div>
+                <div>
+                    <h3>
+                        {{ poster }}'s Profile
+                    </h3>
+                </div>
+                <div id="stats">
+                    <div id="following">
+                        <strong>Following: {{following}}</strong>
+                    </div>
+                    <div id="followers">
+                        <strong>Followers: {{followers}}</strong>
+                    </div>
+                </div>
+            </div>
+            
+            {% if user.is_authenticated %}
+            <div id="followbtn">
+
+            </div>
+            {% endif %}
+        </div>
+    
+{% endblock %}
+

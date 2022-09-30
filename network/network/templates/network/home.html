@@ -1,0 +1,24 @@
+{% extends "network/layout.html" %}
+
+    {% block body %}
+    <div class="all-posts">
+        <div>
+            <h3>
+                Home
+            </h3>
+        </div>
+        {% if user.is_authenticated %}
+        <div id="newpost">
+            What are you thinking?
+            <form id="new-post" action="{% url 'home' %}" method="post">
+                {% csrf_token %}
+                <div id="new-text">
+                    {{ newpost.text }}
+                </div>
+                <input type="submit" name="submit" class="btn btn-primary" value="Send"/>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+    {% endblock %}
+
